@@ -1029,6 +1029,10 @@ MonoBehaviour:
   awakenPoolSize: 0
   awakenUis: []
   awakenRoot: {fileID: 6436850564346493747}
+  abilityBarPrefab: {fileID: 8582667574477984613, guid: 9c01e7041a1024bdab80611493db60b8, type: 3}
+  abilityBarPoolSize: 0
+  abilityUis: []
+  abilityRoot: {fileID: 6436850564346493747}
   currencyUI: {fileID: 2220845470936733661}
   questGuide: {fileID: 1929708703255884534}
   attackQuestRoot: {fileID: 0}
@@ -1055,6 +1059,8 @@ MonoBehaviour:
   - type: 0
     dot: {fileID: 8755327726013654299}
   - type: 1
+    dot: {fileID: 773608907239568252}
+  - type: 2
     dot: {fileID: 773608907239568252}
 --- !u!1 &3037413536777639729
 GameObject:
@@ -2885,7 +2891,7 @@ GameObject:
   - component: {fileID: 6227126369414017746}
   - component: {fileID: 8422956004223742893}
   - component: {fileID: 8636015674466539412}
-  - component: {fileID: 284129760272295819}
+  - component: {fileID: 3221425043452291890}
   m_Layer: 5
   m_Name: Speciality
   m_TagString: Untagged
@@ -2969,7 +2975,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.29803923}
   m_EffectDistance: {x: 0, y: -6}
   m_UseGraphicAlpha: 1
---- !u!114 &284129760272295819
+--- !u!114 &3221425043452291890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2978,7 +2984,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7675139424120448226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -3001,7 +3007,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: a462fd4da21624bb2a9bcac90db384f7, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: a462fd4da21624bb2a9bcac90db384f7, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -3010,9 +3016,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 8422956004223742893}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 4505301928505826056}
+  m_Group: {fileID: 3273310222374076123}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_IsOn: 0
 --- !u!1 &7842786765473412454
 GameObject:
   m_ObjectHideFlags: 0

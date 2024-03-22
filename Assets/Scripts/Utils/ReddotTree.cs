@@ -58,6 +58,8 @@ public class ReddotTree : MonoBehaviour
 
         UpgradeManager.instance.onTrainingTypeAndCurrentLevel += OffTrainUpgrade;
         UpgradeManager.instance.onAwakenUpgrade += OffAwakenUpgrade;
+
+        UpgradeManager.instance.onAbilityUpgrade += OffAbilityUpgrade;
     }
 
     private void Unsubscribe()
@@ -75,6 +77,8 @@ public class ReddotTree : MonoBehaviour
 
         UpgradeManager.instance.onTrainingTypeAndCurrentLevel -= OffTrainUpgrade;
         UpgradeManager.instance.onAwakenUpgrade -= OffAwakenUpgrade;
+        
+        UpgradeManager.instance.onAbilityUpgrade -= OffAbilityUpgrade;
     }
 
 
@@ -86,6 +90,11 @@ public class ReddotTree : MonoBehaviour
     private void OffTrainUpgrade(EStatusType type, int level)
     {
         TurnOnOffReddot(EUpgradeType.Training, false);
+    }
+
+    private void OffAbilityUpgrade(EStatusType type, int level)
+    {
+        TurnOnOffReddot(EUpgradeType.Ability, false);
     }
 
     private void OffSkillEquip(int slot, AnimSkillData equipSkill)

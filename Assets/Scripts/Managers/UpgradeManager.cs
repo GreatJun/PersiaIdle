@@ -16,6 +16,7 @@ public class UpgradeManager : MonoBehaviour
 
     public event Action<EStatusType, int> onTrainingTypeAndCurrentLevel;
     public event Action<EStatusType, int> onAwakenUpgrade;
+    public event Action<EStatusType, int> onAbilityUpgrade;
     public event Action<int> onBaseAttackUpgrade;
     public event Action<int> onBaseHealthUpgrade;
     public event Action<float> onBaseDamageReductionUpgrade;
@@ -168,7 +169,7 @@ public class UpgradeManager : MonoBehaviour
         
         info.LevelUp();
 
-        onTrainingTypeAndCurrentLevel?.Invoke(info.statusType, info.level);
+        onAbilityUpgrade?.Invoke(info.statusType, info.level);
     }
     
     /* ============================================================================================================= */

@@ -150,6 +150,7 @@ namespace Defines
     {
         Training,
         Awaken,
+        Ability,
         SummonWeapon,
         SummonArmor,
         SummonSkill,
