@@ -24,7 +24,13 @@ public class UIGrowthPanel : UIPanel
     [SerializeField] private GameObject[] awakenUis;
     [SerializeField] private RectTransform awakenRoot;
 
-    // 미정
+    // 어빌리티
+    [Header("어빌리티")] [SerializeField] private UIAbilityBar abilityBarPrefab;
+    private CustomPool<UIAbilityBar> abilityPool;
+    [SerializeField] private int abilityBarPoolSize;
+    [SerializeField] private GameObject[] abilityUis;
+    [SerializeField] private RectTransform abilityRoot;
+    
     // [SerializeField] private 미정 무언가Prefab;
     // private ObjectPool<미정> 무언가Pool;
     // private LinkedList<미정> 무언가OpenedUI;
@@ -57,6 +63,15 @@ public class UIGrowthPanel : UIPanel
             x => x.actOnCallback += () => awakenPool.Release(x),
             x => x.transform.SetAsLastSibling(),
             null, awakenPoolSize, true);
+        
+        /* ====================================================================================================== */
+        
+        abilityPool = EasyUIPooling.MakePool(abilityBarPrefab, statRoot,
+            x => x.actOnCallback += () => abilityPool.Release(x),
+            x => x.transform.SetAsLastSibling(),
+            null, statBarPoolSize, true);
+        
+        /* ====================================================================================================== */
 
         currencyUI.InitUI(this);
         return this;
@@ -150,17 +165,18 @@ public class UIGrowthPanel : UIPanel
 
                 ControlUICurrency(ECurrencyType.AwakenStone);
                 break;
-            // case ETrainingType.Speciality:
-            //     foreach (var ui in specialityUis)
-            //     {
-            //         ui.SetActive(true);
-            //     }
-            //     foreach (var item in UpgradeManager.instance.specialityUpgradeInfo)
-            //     {
-            //         var obj = specialityPool.Get();
-            //         obj.ShowUI(item);
-            //     }
-            //     break;
+            case ETrainingType.Speciality:
+                foreach (var ui in abilityUis)
+                {
+                    ui.SetActive(true);
+                }
+                foreach (var item in UpgradeManager.instance.abilityUpgradeInfo)
+                {
+                    var obj = abilityPool.Get();
+                    obj.ShowUI(item);
+                }
+                break;
+            // Ability
         }
     }
 
@@ -173,6 +189,9 @@ public class UIGrowthPanel : UIPanel
                 break;
             case ETrainingType.Awaken:
                 awakenPool.Clear();
+                break;
+            case ETrainingType.Speciality:
+                abilityPool.Clear();
                 break;
             // case ETrainingType.Speciality:
             //     CloseTab(specialityOpenedUi, specialityUis, specialityPool);

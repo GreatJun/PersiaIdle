@@ -39,9 +39,15 @@ public class UpgradeManager : MonoBehaviour
     [field: SerializeField] public StatUpgradeInfo[] statUpgradeInfo { get; protected set; }
 
     [field: SerializeField] public AwakenUpgradeInfo[] awakenUpgradeInfo { get; protected set; }
+    
+    /* ============================================================================================================= */
+    
+    [field: SerializeField] public AbilityUpgradeInfo[] abilityUpgradeInfo { get; protected set; }
 
     // [field: SerializeField] public SpecialityUpgradeInfo[] specialityUpgradeInfo { get; protected set; }
     // [field: SerializeField] public RelicUpgradeInfo[] relicUpgradeInfo { get; protected set; }
+    
+    /* ============================================================================================================= */
     public void InitStatus(EStatusType type, BigInteger value)
     {
         PlayerManager.instance.status.ChangeBaseStat(type, value);
@@ -110,6 +116,62 @@ public class UpgradeManager : MonoBehaviour
 
         onTrainingTypeAndCurrentLevel?.Invoke(info.statusType, info.level);
     }
+    
+    /* ============================================================================================================= */
+    
+    /// <summary>
+    /// Ability Upgrade Info
+    /// </summary>
+    public void UpgradeBaseStatus(AbilityUpgradeInfo info)
+    {
+        var status = PlayerManager.instance.status;
+        var score = new BigInteger(status.BattleScore.ToString());
+        
+        if (info.upgradePerLevelInt != 0)
+            PlayerManager.instance.status.ChangeBaseStat(info.statusType, info.upgradePerLevelInt);
+        else
+            PlayerManager.instance.status.ChangeBaseStat(info.statusType, info.upgradePerLevelFloat);
+        
+        switch (info.statusType)
+        {
+            case EStatusType.ATK:
+                onBaseAttackUpgrade?.Invoke(info.upgradePerLevelInt);
+                break;
+            case EStatusType.HP:
+                onBaseHealthUpgrade?.Invoke(info.upgradePerLevelInt);
+                break;
+            case EStatusType.MP:
+                onBaseManaUpgrade?.Invoke(info.upgradePerLevelInt);
+                break;
+            case EStatusType.MP_RECO:
+                onBaseRecoveryUpgrade?.Invoke(info.upgradePerLevelInt);
+                break;
+            case EStatusType.CRIT_DMG:
+                onBaseCriticalDamageUpgrade?.Invoke(info.upgradePerLevelInt);
+                break;
+            case EStatusType.DMG_REDU:
+                onBaseDamageReductionUpgrade?.Invoke(info.upgradePerLevelFloat);
+                break;
+            case EStatusType.CRIT_CH:
+                onBaseCriticalChanceUpgrade?.Invoke(info.upgradePerLevelFloat);
+                break;
+            case EStatusType.ATK_SPD:
+                onBaseAttackSpeedUpgrade?.Invoke(info.upgradePerLevelFloat);
+                break;
+            case EStatusType.MOV_SPD:
+                onBaseMovementSpeedUpgrade?.Invoke(info.upgradePerLevelFloat);
+                break;
+        }
+
+        PlayerManager.instance.status.InitBattleScore();
+        MessageUIManager.instance.ShowPower(status.BattleScore, status.BattleScore - score);
+        
+        info.LevelUp();
+
+        onTrainingTypeAndCurrentLevel?.Invoke(info.statusType, info.level);
+    }
+    
+    /* ============================================================================================================= */
 
     public void UpgradePercentStatus(AwakenUpgradeInfo info)
     {
@@ -275,6 +337,77 @@ public class AwakenUpgradeInfo
 
 [Serializable]
 public class StatUpgradeInfo
+{
+    public string title => info.title;
+    public int level;
+    public int maxLevel => info.maxLevel;
+
+    // 업글 관련
+    public EStatusType statusType => info.statusType;
+    
+    public int upgradePerLevelInt => info.upgradePerLevelInt;
+    
+    public float upgradePerLevelFloat => info.upgradePerLevelFloat;
+
+    // 비용 관련
+    public ECurrencyType currencyType => info.currencyType;
+    public int baseCost => info.baseCost;
+    public int increaseCostPerLevel => info.increaseCostPerLevel;
+
+    public BigInteger cost;
+
+    // 꾸미기 관련
+    public Sprite image => info.image;
+
+    [SerializeField] private StatUpgradeFixedInfo info;
+    
+    public void LevelUp()
+    {
+        ++level;
+        cost += (cost * increaseCostPerLevel) / 100;
+        Save();
+    }
+
+    public void Save()
+    {
+        DataManager.Instance.Save($"{nameof(StatUpgradeInfo)}_{statusType.ToString()}_{nameof(level)}", level);
+        DataManager.Instance.Save($"{nameof(StatUpgradeInfo)}_{statusType.ToString()}_{nameof(cost)}", cost.ToString());
+    }
+
+    public void Load()
+    {
+        level = DataManager.Instance.Load($"{nameof(StatUpgradeInfo)}_{statusType.ToString()}_{nameof(level)}", level);
+        cost = new BigInteger(DataManager.Instance.Load<string>(
+            $"{nameof(StatUpgradeInfo)}_{statusType.ToString()}_{nameof(cost)}", baseCost.ToString()));
+
+        if (upgradePerLevelInt != 0)
+            UpgradeManager.instance.InitStatus(statusType, (new BigInteger(upgradePerLevelInt)) * level);
+        else
+            UpgradeManager.instance.InitStatus(statusType, (upgradePerLevelFloat) * level);
+    }
+
+    public bool CheckUpgradeCondition()
+    {
+        if (level >= maxLevel || cost > CurrencyManager.instance.GetCurrency(currencyType))
+            return false;
+        return true;
+    }
+
+    public void Init()
+    {
+        level = 0;
+        cost = baseCost;
+    }
+}
+
+
+/* ============================================================================================================= */
+/* ============================================================================================================= */
+/* ============================================================================================================= */
+
+
+[Serializable]
+public class AbilityUpgradeInfo
 {
     public string title => info.title;
     public int level;
