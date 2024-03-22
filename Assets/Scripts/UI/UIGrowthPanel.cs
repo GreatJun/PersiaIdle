@@ -66,10 +66,10 @@ public class UIGrowthPanel : UIPanel
         
         /* ====================================================================================================== */
         
-        abilityPool = EasyUIPooling.MakePool(abilityBarPrefab, statRoot,
+        abilityPool = EasyUIPooling.MakePool(abilityBarPrefab, abilityRoot,
             x => x.actOnCallback += () => abilityPool.Release(x),
             x => x.transform.SetAsLastSibling(),
-            null, statBarPoolSize, true);
+            null, abilityBarPoolSize, true);
         
         /* ====================================================================================================== */
 
