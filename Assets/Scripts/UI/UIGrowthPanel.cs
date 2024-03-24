@@ -175,6 +175,8 @@ public class UIGrowthPanel : UIPanel
                     var obj = abilityPool.Get();
                     obj.ShowUI(item);
                 }
+                
+                ControlUICurrency(ECurrencyType.Gold);
                 break;
             // Ability
         }

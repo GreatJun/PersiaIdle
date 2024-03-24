@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dots:
-  - type: 0
+  - type: 2
     dot: {fileID: 4161497547339545387}
 --- !u!1 &525692861811538826
 GameObject:

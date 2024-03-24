@@ -431,7 +431,7 @@ public class AbilityUpgradeInfo
     // 꾸미기 관련
     public Sprite image => info.image;
 
-    [SerializeField] private StatUpgradeFixedInfo info;
+    [SerializeField] private AbilityUpgradeFixedInfo info;
     
     public void LevelUp()
     {
