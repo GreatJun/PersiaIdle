@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12adb822f4f654d4797115368a006d5c, type: 3}
-  m_Name: AbilityUpgradeFixedInfo 2
+  m_Name: AbilityUpgradeFixedInfo 4
   m_EditorClassIdentifier: 
   title: LV.1
   maxLevel: 1000
-  statusType: 1
-  upgradePerLevelInt: 10
+  statusType: 9
+  upgradePerLevelInt: 1
   upgradePerLevelFloat: 0
   currencyType: 0
   baseCost: 100

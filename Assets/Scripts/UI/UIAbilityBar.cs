@@ -108,12 +108,14 @@ public class UIAbilityBar : UIBase
 
     private void UpdateUI()
     {
-        levelText.text = upgradeInfo.level.ToString();
-        
+        //levelText.text = upgradeInfo.level.ToString();
+        levelText.text = UpgradeManager.instance.rank;
+
         if (upgradeInfo.upgradePerLevelInt != 0)
-            totalUpgrade.text = $"(+{upgradeInfo.upgradePerLevelInt * upgradeInfo.level})";
+            //totalUpgrade.text = $"(+{upgradeInfo.upgradePerLevelInt * upgradeInfo.level})";
+            totalUpgrade.text = $"(+{UpgradeManager.instance.randomAbility})";
         else
-            totalUpgrade.text = $"(+{(upgradeInfo.upgradePerLevelFloat * upgradeInfo.level * 100):F2}%)";
+            totalUpgrade.text = $"(+{UpgradeManager.instance.randomAbility})";
 
         costText.text = upgradeInfo.cost.ChangeToShort();
         
@@ -133,7 +135,8 @@ public class UIAbilityBar : UIBase
             upgradePerLevelText.text = (upgradeInfo.upgradePerLevelFloat * 100).ToString("F2") + "%";
 
         titleText.text = upgradeInfo.title + " <color=#16FF00>+</color>";
-        maxLevelText.text = upgradeInfo.maxLevel.ToString();
+        // maxLevelText.text = upgradeInfo.maxLevel.ToString();
+        maxLevelText.text = upgradeInfo.statusType.ToString();
         
         UpdateUI();
     }

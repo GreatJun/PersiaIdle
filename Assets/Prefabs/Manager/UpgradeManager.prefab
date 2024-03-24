@@ -80,4 +80,10 @@ MonoBehaviour:
   - level: 0
     info: {fileID: 11400000, guid: 209eb9fe87dad4f25bb8c426e771c16a, type: 2}
   - level: 0
-    info: {fileID: 11400000, guid: f12835f64bdcf41029efeb91886389b2, type: 2}
+    info: {fileID: 11400000, guid: 7f6b0872d6c424b719cddbc92b8f23c9, type: 2}
+  - level: 0
+    info: {fileID: 11400000, guid: cfc41391746ee490e90c975a22d6258c, type: 2}
+  - level: 0
+    info: {fileID: 11400000, guid: afa95004787aa4d949a48a985efb1945, type: 2}
+  rank: 
+  randomAbility: 0

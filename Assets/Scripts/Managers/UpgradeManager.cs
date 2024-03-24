@@ -119,19 +119,30 @@ public class UpgradeManager : MonoBehaviour
     }
     
     /* ============================================================================================================= */
-    
+
     /// <summary>
     /// Ability Upgrade Info
     /// </summary>
+    ///
+    private int saveAbility = 0;
     public void UpgradeBaseStatus(AbilityUpgradeInfo info)
     {
         var status = PlayerManager.instance.status;
         var score = new BigInteger(status.BattleScore.ToString());
         
+        // 이전 업그레이드 원상복귀
+        if (saveAbility != 0)
+            PlayerManager.instance.status.ChangeBaseStat(info.statusType, -saveAbility);
+        
+        RandomRank();
+        RandomAbilityUp(info);
+        saveAbility = randomAbility;
+        
+        // 새로 업그레이드
         if (info.upgradePerLevelInt != 0)
-            PlayerManager.instance.status.ChangeBaseStat(info.statusType, info.upgradePerLevelInt);
+            PlayerManager.instance.status.ChangeBaseStat(info.statusType, randomAbility);
         else
-            PlayerManager.instance.status.ChangeBaseStat(info.statusType, info.upgradePerLevelFloat);
+            PlayerManager.instance.status.ChangeBaseStat(info.statusType, randomAbility);
         
         switch (info.statusType)
         {
@@ -170,6 +181,93 @@ public class UpgradeManager : MonoBehaviour
         info.LevelUp();
 
         onAbilityUpgrade?.Invoke(info.statusType, info.level);
+    }
+
+    private int randomRank;
+    [HideInInspector] public string rank = "";
+    
+    public void RandomRank()
+    {
+        randomRank = UnityEngine.Random.Range(1, 101);
+
+        if (randomRank <= 1)
+            rank = "SS";
+        else if (randomRank <= 10)
+            rank = "S";
+        else if (randomRank <= 30)
+            rank = "A";
+        else if (randomRank <= 60)
+            rank = "B";
+        else
+            rank = "C";
+    }
+
+    [HideInInspector] public int randomAbility;
+    int upgradeType;
+    public void RandomAbilityUp(AbilityUpgradeInfo info)
+    {
+        if (info.statusType == EStatusType.ATK)
+            upgradeType = 0;
+        else if (info.statusType == EStatusType.HP)
+            upgradeType = 0;
+        else if (info.statusType == EStatusType.CRIT_CH)
+            upgradeType = 0;
+        else if (info.statusType == EStatusType.DMG_REDU)
+            upgradeType = 0;
+        
+        switch (rank)
+        {
+            case "SS":
+                if (upgradeType == 0)
+                    randomAbility = UnityEngine.Random.Range(81, 101);
+                else if (upgradeType == 1)
+                    randomAbility = UnityEngine.Random.Range(89, 111);
+                else if (upgradeType == 2)
+                    randomAbility = UnityEngine.Random.Range(41, 51);
+                else if (upgradeType == 3)
+                    randomAbility = UnityEngine.Random.Range(21, 26);
+                break;
+            case "S":
+                if (upgradeType == 0)
+                    randomAbility = UnityEngine.Random.Range(61, 81);
+                else if (upgradeType == 1)
+                    randomAbility = UnityEngine.Random.Range(67, 88);
+                else if (upgradeType == 2)
+                    randomAbility = UnityEngine.Random.Range(31, 41);
+                else if (upgradeType == 3)
+                    randomAbility = UnityEngine.Random.Range(16, 21);
+                break;
+            case "A":
+                if (upgradeType == 0)
+                    randomAbility = UnityEngine.Random.Range(41, 61);
+                else if (upgradeType == 1)
+                    randomAbility = UnityEngine.Random.Range(45, 67);
+                else if (upgradeType == 2)
+                    randomAbility = UnityEngine.Random.Range(21, 31);
+                else if (upgradeType == 3)
+                    randomAbility = UnityEngine.Random.Range(11, 15);
+                break;
+            case "B":
+                if (upgradeType == 0)
+                    randomAbility = UnityEngine.Random.Range(21, 41);
+                else if (upgradeType == 1)
+                    randomAbility = UnityEngine.Random.Range(23, 45);
+                else if (upgradeType == 2)
+                    randomAbility = UnityEngine.Random.Range(11, 21);
+                else if (upgradeType == 3)
+                    randomAbility = UnityEngine.Random.Range(6, 11);
+                break;
+            case "C":
+                if (upgradeType == 0)
+                    randomAbility = UnityEngine.Random.Range(1, 21);
+                else if (upgradeType == 1)
+                    randomAbility = UnityEngine.Random.Range(11, 23);
+                else if (upgradeType == 2)
+                    randomAbility = UnityEngine.Random.Range(1, 11);
+                else if (upgradeType == 3)
+                    randomAbility = UnityEngine.Random.Range(1, 6);
+                break;
+        }
     }
     
     /* ============================================================================================================= */
