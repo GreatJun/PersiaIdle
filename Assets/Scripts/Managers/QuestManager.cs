@@ -79,6 +79,9 @@ public class QuestManager : MonoBehaviour
     {
         var id = DataManager.Instance.Load<string>($"{nameof(currentQuest)}_{nameof(currentQuest.achievementID)}",
             "init");
+        // TODO id 값에 스트링 퀘스트 이름을 입력하여 그 퀘스트 순서로 강제
+        id = "메인 퀘스트 19";
+        
         var count = DataManager.Instance.Load($"{nameof(currentQuest)}_{nameof(currentQuest.count)}", 0);
         currentQuest = ProgressQuest.Dequeue();
 
@@ -347,6 +350,9 @@ public class QuestManager : MonoBehaviour
             case EAchievementType.SkillLevelUp:
                 SkillManager.instance.onSkillLevelUpTotal -= counter.CountSetAs;
                 break;
+            case EAchievementType.AutoBossClear:
+                StageManager.instance.OnAutoBossClear -= counter.CountSetAs;
+                break;
         }
     }
 
@@ -464,6 +470,9 @@ public class QuestManager : MonoBehaviour
             case EAchievementType.SkillLevelUp:
                 SkillManager.instance.onSkillLevelUpTotal += counter.CountSetAs;
                 initValue = BigInteger.ToInt32(SkillManager.instance.TotalSkilllevelUp);
+                break;
+            case EAchievementType.AutoBossClear:
+                StageManager.instance.OnAutoBossClear += counter.CountSetAs;
                 break;
         }
         counter.Load(initValue);

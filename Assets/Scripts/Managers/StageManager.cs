@@ -59,6 +59,8 @@ public class StageManager : MonoBehaviour
     public event Action<bool> OnBossStageValidityChange;
     public event Action<int> onMaxClearStageChanged;
 
+    public event Action<int> OnAutoBossClear;
+
     private bool autoBossChallenge;
 
     public bool AutoBossChallenge
@@ -382,6 +384,9 @@ public class StageManager : MonoBehaviour
         if (AutoBossChallenge)
         {
             UpdateCurrentStageData();
+            
+            // TODO 메인 퀘스트 20 자동 보스 도전
+            OnAutoBossClear?.Invoke(AutoBossChallenge ? 1 : 0);
 
             isOnTimer = true;
             interModeCoroutine = StartCoroutine(InitBossStage());

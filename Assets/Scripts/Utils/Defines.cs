@@ -211,6 +211,7 @@ public enum EAchievementType
     
     EquipEnhanceCount,
     SkillLevelUp,
+    AutoBossClear,
 }
 
 public enum ECurrencyType
