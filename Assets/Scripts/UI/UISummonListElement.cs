@@ -133,7 +133,9 @@ public class UISummonListElement : UIBase
         // TODO shake effect
         // shakeEffect.SetActive(true);
         this.onEnd = onEnd;
-        StartCoroutine(ShakeEffect(isUpgrade, toUpgrade));
+        
+        if (gameObject.activeSelf)
+            StartCoroutine(ShakeEffect(isUpgrade, toUpgrade));
     }
     
     public void Shake(bool isUpgrade, BaseSkillData toUpgrade = null, Action onEnd = null)
@@ -166,11 +168,25 @@ public class UISummonListElement : UIBase
         shakeEffect.SetActive(false);
 
         yield return null;
+        
 
         if (isUpgrade)
         {
             shakeEffect.SetActive(true);
             ShowUI(uiSummonList, toUpgrade);
+
+            //if (uiSummonList.isAuto)
+            //{
+                //yield return new WaitForSeconds(1f);
+                //uiSummonList.AutoSummon();
+            //}
+        }
+        else
+        {
+            //if (uiSummonList.isAuto)
+            //{
+                //uiSummonList.AutoSummon();
+            //}
         }
         // if (Random.Range(0f, 1f) < SummonManager.instance.shakeProbability)
         // {

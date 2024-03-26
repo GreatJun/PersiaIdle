@@ -66,7 +66,7 @@ public class UISummonPanel : UIPanel
     [SerializeField] private GameObject skillRewardEffect;
     
     [Header("소환 리스트 UI")]
-    [SerializeField] private UISummonList summonList;
+    [SerializeField] public UISummonList summonList;
 
     [SerializeField] private Transform questGuide;
     [SerializeField] private Transform weaponSummonQuestRoot;

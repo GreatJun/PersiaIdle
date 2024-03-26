@@ -20,7 +20,7 @@ public class UISummonList : UIPanel
     [SerializeField] private TMP_Text summonCounter;
 
     [SerializeField] private Toggle autoSummon;
-    private bool isAuto;
+    [HideInInspector] public bool isAuto;
     [SerializeField] private Toggle fastSummon;
     private bool isFast;
     [SerializeField] private Button summon;
@@ -107,7 +107,7 @@ public class UISummonList : UIPanel
         this.currencyType = currencyType;
 
         fastSummon.isOn = isFast;
-        autoSummon.isOn = false;
+        autoSummon.isOn = isAuto;
         gameObject.SetActive(true);
 
         SetForStartSummon();
@@ -132,7 +132,7 @@ public class UISummonList : UIPanel
         this.currencyType = currencyType;
 
         fastSummon.isOn = isFast;
-        autoSummon.isOn = false;
+        autoSummon.isOn = isAuto;
         gameObject.SetActive(true);
 
         SetForStartSummon();
@@ -141,6 +141,45 @@ public class UISummonList : UIPanel
         
         CurrencyManager.instance.onCurrencyChanged += SetCurrency;
         StartCoroutine(ShowSummonEffect(skills, this.isFast));
+    }
+
+    public void AutoSummon()
+    {
+        if (SummonManager.instance.CalculateCost(type, amount, out int costDia, out int costTicket))
+        {
+            ClearUI();
+            SetForStartSummon();
+            switch (type)
+            {
+                case EEquipmentType.Weapon:
+                case EEquipmentType.Armor:
+                {
+                    int cost;
+                    ECurrencyType costType;
+                    if (costTicket > 0)
+                    {
+                        cost = costTicket;
+                        costType = type == EEquipmentType.Weapon ? ECurrencyType.WeaponSummonTicket : ECurrencyType.ArmorSummonTicket;
+                    }
+                    else
+                    {
+                        cost = costDia;
+                        costType = ECurrencyType.Dia;
+                    }
+                    SummonManager.instance.StartSummonItems(type, amount, costType, cost);
+                    break;
+                }
+                case EEquipmentType.Skill:
+                {
+                    SummonManager.instance.StartSummonSkills(amount, costDia);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            MessageUIManager.instance.ShowCenterMessage(CustomText.SetColor("재화", Color.red) + "가 부족합니다.");
+        }
     }
 
     public void SetTopBar(EEquipmentType type)
@@ -189,6 +228,7 @@ public class UISummonList : UIPanel
 
         isEnd = false;
         isSkip = false;
+        
     }
 
     public void SetForEndSummon()
@@ -242,6 +282,8 @@ public class UISummonList : UIPanel
         yield return new WaitForSeconds(0.5f);
 
         isEnd = true;
+
+        //if (autoSummon.isOn == true) AutoSummon();
     }
 
     private IEnumerator ShowSummonEffect(List<SummonItem> items, bool isFast)
@@ -288,6 +330,14 @@ public class UISummonList : UIPanel
         yield return new WaitForSeconds(0.5f);
 
         isEnd = true;
+
+        /*
+        if (autoSummon.isOn && isShake)
+        {
+            isShake = false;
+            AutoSummon();
+        }
+        */
     }
 
     public override void CloseUI()

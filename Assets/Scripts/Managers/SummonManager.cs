@@ -249,6 +249,10 @@ public class SummonManager : MonoBehaviour
         MessageUIManager.instance.ShowPower(status.BattleScore, status.BattleScore - score);
 
         yield return null;
+        
+        // TODO 자동 소환 체크
+        if (uiSummonPanel.summonList.isAuto)
+            uiSummonPanel.summonList.AutoSummon();
     }
 
     public void StartSummonSkills(int amount, int cost)

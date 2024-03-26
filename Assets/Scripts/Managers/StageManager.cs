@@ -74,6 +74,14 @@ public class StageManager : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            CurrencyManager.instance.AddCurrency(ECurrencyType.Dia, 1000);
+        }
+    }
+
     public void InitStageManager()
     {
         // InitCollections();
