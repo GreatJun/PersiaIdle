@@ -346,6 +346,10 @@ public class SummonManager : MonoBehaviour
 
         uiSummonPanel.EndSummon();
         yield return null;
+        
+        // TODO 자동 소환 체크
+        if (uiSummonPanel.summonList.isAuto)
+            uiSummonPanel.summonList.AutoSummon();
     }
 
 
