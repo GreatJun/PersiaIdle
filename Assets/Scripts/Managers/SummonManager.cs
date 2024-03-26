@@ -221,7 +221,11 @@ public class SummonManager : MonoBehaviour
             yield return null;
         }
 
-        uiSummonPanel.EndSummon();
+        // TODO 자동 소환 체크
+        if (!uiSummonPanel.summonList.isAuto)
+            uiSummonPanel.EndSummon();
+        
+        /*==================================================================================*/
 
         yield return null;
 
@@ -250,7 +254,10 @@ public class SummonManager : MonoBehaviour
 
         yield return null;
         
+        /*==================================================================================*/
+        
         // TODO 자동 소환 체크
+        // 실행중에는 버튼 누르지 못하게 처리 필요
         if (uiSummonPanel.summonList.isAuto)
             uiSummonPanel.summonList.AutoSummon();
     }
@@ -344,12 +351,12 @@ public class SummonManager : MonoBehaviour
 
         CurrencyManager.instance.SaveCurrencies();
 
-        uiSummonPanel.EndSummon();
-        yield return null;
-        
         // TODO 자동 소환 체크
-        if (uiSummonPanel.summonList.isAuto)
+        if (!uiSummonPanel.summonList.isAuto)
+            uiSummonPanel.EndSummon();
+        else
             uiSummonPanel.summonList.AutoSummon();
+        yield return null;
     }
 
 

@@ -180,6 +180,12 @@ public class UISummonList : UIPanel
         }
     }
 
+    public void NonAutoSummon()
+    {
+        ClearUI();
+        SetForStartSummon();
+    }
+
     public void SetTopBar(EEquipmentType type)
     {
         switch (type)
