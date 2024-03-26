@@ -99,11 +99,10 @@ public class UISummonList : UIPanel
         return this;
     }
 
-    public void ShowUI(EEquipmentType type, List<SummonItem> items, bool isFast, ECurrencyType currencyType)
+    public void ShowUI(EEquipmentType type, List<SummonItem> items, ECurrencyType currencyType)
     {
         this.type = type;
         amount = items.Count;
-        this.isFast = isFast;
         this.currencyType = currencyType;
 
         fastSummon.isOn = isFast;
@@ -124,11 +123,10 @@ public class UISummonList : UIPanel
             summonCurrency.text = CurrencyManager.instance.GetCurrencyStr(ECurrencyType.Dia);
     }
 
-    public void ShowUI(EEquipmentType type, List<SummonSkill> skills, bool isFast, ECurrencyType currencyType)
+    public void ShowUI(EEquipmentType type, List<SummonSkill> skills, ECurrencyType currencyType)
     {
         this.type = type;
         amount = skills.Count;
-        this.isFast = isFast;
         this.currencyType = currencyType;
 
         fastSummon.isOn = isFast;

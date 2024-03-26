@@ -418,12 +418,12 @@ public class UISummonPanel : UIPanel
 
     public void ShowSummonList(EEquipmentType type, List<SummonItem> equipList, ECurrencyType currencyType)
     {
-        summonList.ShowUI(type, equipList, false, currencyType);
+        summonList.ShowUI(type, equipList, currencyType);
     }
 
     public void ShowSummonList(List<SummonSkill> skillList)
     {
-        summonList.ShowUI(EEquipmentType.Skill, skillList, false, ECurrencyType.Dia);
+        summonList.ShowUI(EEquipmentType.Skill, skillList, ECurrencyType.Dia);
     }
 
     public void EndSummon()
