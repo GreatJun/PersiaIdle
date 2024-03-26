@@ -159,6 +159,12 @@ public class UIQuestBar : UIBase
                 ui.ShowQuestRoot(type);
                 break;
             }
+            case EAchievementType.AutoBossClear:
+            {
+                var ui = UIManager.instance.TryGetUI<UIStageBar>();
+                ui.ShowQuestRoot(type);
+                break;
+            }
         }
     }
 
