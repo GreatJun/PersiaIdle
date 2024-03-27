@@ -253,13 +253,11 @@ public class PlayerStatus : CurrentStatus, IBuffTarget
                     criticalDamagePercent);
                 onCriticalDamageChange?.Invoke(currentCriticalDamage);
                 break;
-            /*
             case EStatusType.SKILL_DMG:
                 AbsoluteCalculateStatus(ref baseSkillMultiplier, value, ref currentSkillDamage,
-                criticalDamagePercent);
-                onCriticalDamageChange?.Invoke(currentSkillDamage);
+                100);
+                onCriticalDamageChange?.Invoke(baseSkillMultiplier);
                 break;
-                */
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -289,6 +287,11 @@ public class PlayerStatus : CurrentStatus, IBuffTarget
                 AbsoluteCalculateStatus(ref baseCriticalDamage, value, ref currentCriticalDamage,
                     criticalDamagePercent);
                 onCriticalDamageChange?.Invoke(currentCriticalDamage);
+                break;
+            case EStatusType.SKILL_DMG:
+                AbsoluteCalculateStatus(ref baseSkillMultiplier, value, ref currentSkillDamage,
+                    100);
+                onCriticalDamageChange?.Invoke(baseSkillMultiplier);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

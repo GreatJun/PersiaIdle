@@ -47,7 +47,7 @@ public class UIAbilityBar : UIBase
     {
         if (type == upgradeInfo.currencyType)
         {
-            if (upgradeInfo.CheckUpgradeCondition())
+            if (upgradeInfo.CheckAbilityUpgradeCondition())
             {
                 // TODO 글씨 색 회색
                 upgradeBtn.interactable = true;
@@ -119,7 +119,7 @@ public class UIAbilityBar : UIBase
 
         costText.text = upgradeInfo.cost.ChangeToShort();
         
-        upgradeBtn.interactable = upgradeInfo.CheckUpgradeCondition();
+        upgradeBtn.interactable = upgradeInfo.CheckAbilityUpgradeCondition();
     }
 
     private void InitializeUI()

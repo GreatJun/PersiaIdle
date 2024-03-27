@@ -15,8 +15,8 @@ MonoBehaviour:
   title: LV.1
   maxLevel: 1000
   statusType: 9
-  upgradePerLevelInt: 1
-  upgradePerLevelFloat: 0
+  upgradePerLevelInt: 0
+  upgradePerLevelFloat: 0.01
   currencyType: 0
   baseCost: 100
   increaseCostPerLevel: 5

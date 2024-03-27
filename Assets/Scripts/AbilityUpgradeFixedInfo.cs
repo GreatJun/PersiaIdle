@@ -9,7 +9,6 @@ using UnityEngine;
 public class AbilityUpgradeFixedInfo : ScriptableObject
 {
     public string title;
-    public int maxLevel;
 
     public EStatusType statusType;
     

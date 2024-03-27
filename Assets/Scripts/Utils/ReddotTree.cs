@@ -92,7 +92,7 @@ public class ReddotTree : MonoBehaviour
         TurnOnOffReddot(EUpgradeType.Training, false);
     }
 
-    private void OffAbilityUpgrade(EStatusType type, int level)
+    private void OffAbilityUpgrade(EStatusType type)
     {
         TurnOnOffReddot(EUpgradeType.Ability, false);
     }

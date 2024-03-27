@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Defines;
 using Keiwando.BigInteger;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class UpgradeManager : MonoBehaviour
 
     public event Action<EStatusType, int> onTrainingTypeAndCurrentLevel;
     public event Action<EStatusType, int> onAwakenUpgrade;
-    public event Action<EStatusType, int> onAbilityUpgrade;
+    public event Action<EStatusType> onAbilityUpgrade;
     public event Action<int> onBaseAttackUpgrade;
     public event Action<int> onBaseHealthUpgrade;
     public event Action<float> onBaseDamageReductionUpgrade;
@@ -134,6 +135,7 @@ public class UpgradeManager : MonoBehaviour
         if (saveAbility != 0)
             PlayerManager.instance.status.ChangeBaseStat(info.statusType, -saveAbility);
         
+        
         RandomRank();
         RandomAbilityUp(info);
         saveAbility = randomAbility;
@@ -142,7 +144,7 @@ public class UpgradeManager : MonoBehaviour
         if (info.upgradePerLevelInt != 0)
             PlayerManager.instance.status.ChangeBaseStat(info.statusType, randomAbility);
         else
-            PlayerManager.instance.status.ChangeBaseStat(info.statusType, randomAbility);
+            PlayerManager.instance.status.ChangeBaseStat(info.statusType, new BigInteger(randomAbility));
         
         switch (info.statusType)
         {
@@ -180,7 +182,7 @@ public class UpgradeManager : MonoBehaviour
         
         info.LevelUp();
 
-        onAbilityUpgrade?.Invoke(info.statusType, info.level);
+        onAbilityUpgrade?.Invoke(info.statusType);
     }
 
     private int randomRank;
@@ -209,11 +211,11 @@ public class UpgradeManager : MonoBehaviour
         if (info.statusType == EStatusType.ATK)
             upgradeType = 0;
         else if (info.statusType == EStatusType.HP)
-            upgradeType = 0;
+            upgradeType = 1;
         else if (info.statusType == EStatusType.CRIT_CH)
-            upgradeType = 0;
+            upgradeType = 2;
         else if (info.statusType == EStatusType.DMG_REDU)
-            upgradeType = 0;
+            upgradeType = 3;
         
         switch (rank)
         {
@@ -504,14 +506,11 @@ public class StatUpgradeInfo
 /* ============================================================================================================= */
 /* ============================================================================================================= */
 
-
 [Serializable]
 public class AbilityUpgradeInfo
 {
     public string title => info.title;
-    public int level;
-    public int maxLevel => info.maxLevel;
-
+    
     // 업글 관련
     public EStatusType statusType => info.statusType;
     
@@ -533,39 +532,39 @@ public class AbilityUpgradeInfo
     
     public void LevelUp()
     {
-        ++level;
         cost += (cost * increaseCostPerLevel) / 100;
         Save();
     }
 
     public void Save()
     {
-        DataManager.Instance.Save($"{nameof(StatUpgradeInfo)}_{statusType.ToString()}_{nameof(level)}", level);
-        DataManager.Instance.Save($"{nameof(StatUpgradeInfo)}_{statusType.ToString()}_{nameof(cost)}", cost.ToString());
+        //DataManager.Instance.Save($"{nameof(AbilityUpgradeInfo)}_{statusType.ToString()}_{nameof(level)}", level);
+        DataManager.Instance.Save($"{nameof(AbilityUpgradeInfo)}_{statusType.ToString()}_{nameof(cost)}", cost.ToString());
     }
 
+    /*
     public void Load()
     {
-        level = DataManager.Instance.Load($"{nameof(StatUpgradeInfo)}_{statusType.ToString()}_{nameof(level)}", level);
+        level = DataManager.Instance.Load($"{nameof(AbilityUpgradeInfo)}_{statusType.ToString()}_{nameof(level)}", level);
         cost = new BigInteger(DataManager.Instance.Load<string>(
-            $"{nameof(StatUpgradeInfo)}_{statusType.ToString()}_{nameof(cost)}", baseCost.ToString()));
+            $"{nameof(AbilityUpgradeInfo)}_{statusType.ToString()}_{nameof(cost)}", baseCost.ToString()));
 
         if (upgradePerLevelInt != 0)
             UpgradeManager.instance.InitStatus(statusType, (new BigInteger(upgradePerLevelInt)) * level);
         else
             UpgradeManager.instance.InitStatus(statusType, (upgradePerLevelFloat) * level);
     }
-
-    public bool CheckUpgradeCondition()
+    */
+    
+    public bool CheckAbilityUpgradeCondition()
     {
-        if (level >= maxLevel || cost > CurrencyManager.instance.GetCurrency(currencyType))
+        if (cost > CurrencyManager.instance.GetCurrency(currencyType))
             return false;
         return true;
     }
 
     public void Init()
     {
-        level = 0;
         cost = baseCost;
     }
 }
