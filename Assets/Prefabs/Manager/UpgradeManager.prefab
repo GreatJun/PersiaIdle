@@ -77,13 +77,197 @@ MonoBehaviour:
   - level: 0
     info: {fileID: 11400000, guid: eef363001684d42149cfc210e2dd7af6, type: 2}
   <abilityUpgradeInfo>k__BackingField:
-  - level: 0
-    info: {fileID: 11400000, guid: 209eb9fe87dad4f25bb8c426e771c16a, type: 2}
-  - level: 0
-    info: {fileID: 11400000, guid: 7f6b0872d6c424b719cddbc92b8f23c9, type: 2}
-  - level: 0
-    info: {fileID: 11400000, guid: cfc41391746ee490e90c975a22d6258c, type: 2}
-  - level: 0
-    info: {fileID: 11400000, guid: afa95004787aa4d949a48a985efb1945, type: 2}
+  - title: "\uACF5\uACA9\uB825"
+    rank: 
+    randomAbilityIndex: 0
+    saveAbilityIndex: 0
+    statusType: 0
+    upgradePerLevelInt: 0
+    upgradePerLevelFloat: 0
+    currencyType: 0
+    baseCost: 0
+    increaseCostPerLevel: 0
+    image: {fileID: 0}
+  - title: "\uACF5\uACA9\uB825"
+    rank: 
+    randomAbilityIndex: 0
+    saveAbilityIndex: 0
+    statusType: 0
+    upgradePerLevelInt: 0
+    upgradePerLevelFloat: 0
+    currencyType: 0
+    baseCost: 0
+    increaseCostPerLevel: 0
+    image: {fileID: 0}
+  - title: "\uACF5\uACA9\uB825"
+    rank: 
+    randomAbilityIndex: 0
+    saveAbilityIndex: 0
+    statusType: 0
+    upgradePerLevelInt: 0
+    upgradePerLevelFloat: 0
+    currencyType: 0
+    baseCost: 0
+    increaseCostPerLevel: 0
+    image: {fileID: 0}
+  - title: "\uACF5\uACA9\uB825"
+    rank: 
+    randomAbilityIndex: 0
+    saveAbilityIndex: 0
+    statusType: 0
+    upgradePerLevelInt: 0
+    upgradePerLevelFloat: 0
+    currencyType: 0
+    baseCost: 0
+    increaseCostPerLevel: 0
+    image: {fileID: 0}
+  <AbilityEffects>k__BackingField:
+  - title: "\uACF5\uACA9\uB825"
+    abilityStat: 0
+    rank: SS
+    min: 81
+    max: 100
+    currency: AbilityStone
+  - title: "\uACF5\uACA9\uB825"
+    abilityStat: 0
+    rank: S
+    min: 61
+    max: 80
+    currency: AbilityStone
+  - title: "\uACF5\uACA9\uB825"
+    abilityStat: 0
+    rank: A
+    min: 41
+    max: 60
+    currency: AbilityStone
+  - title: "\uACF5\uACA9\uB825"
+    abilityStat: 0
+    rank: B
+    min: 21
+    max: 40
+    currency: AbilityStone
+  - title: "\uACF5\uACA9\uB825"
+    abilityStat: 0
+    rank: C
+    min: 1
+    max: 20
+    currency: AbilityStone
+  - title: "\uCCB4\uB825"
+    abilityStat: 1
+    rank: SS
+    min: 89
+    max: 111
+    currency: AbilityStone
+  - title: "\uCCB4\uB825"
+    abilityStat: 1
+    rank: S
+    min: 67
+    max: 88
+    currency: AbilityStone
+  - title: "\uCCB4\uB825"
+    abilityStat: 1
+    rank: A
+    min: 45
+    max: 66
+    currency: AbilityStone
+  - title: "\uCCB4\uB825"
+    abilityStat: 1
+    rank: B
+    min: 23
+    max: 44
+    currency: AbilityStone
+  - title: "\uCCB4\uB825"
+    abilityStat: 1
+    rank: C
+    min: 11
+    max: 22
+    currency: AbilityStone
+  - title: "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0"
+    abilityStat: 6
+    rank: SS
+    min: 41
+    max: 50
+    currency: AbilityStone
+  - title: "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0"
+    abilityStat: 6
+    rank: S
+    min: 31
+    max: 40
+    currency: AbilityStone
+  - title: "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0"
+    abilityStat: 6
+    rank: A
+    min: 21
+    max: 30
+    currency: AbilityStone
+  - title: "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0"
+    abilityStat: 6
+    rank: B
+    min: 11
+    max: 20
+    currency: AbilityStone
+  - title: "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0"
+    abilityStat: 6
+    rank: C
+    min: 1
+    max: 10
+    currency: AbilityStone
+  - title: "\uD53C\uD574\uB7C9 \uC99D\uAC00"
+    abilityStat: 9
+    rank: SS
+    min: 21
+    max: 25
+    currency: AbilityStone
+  - title: "\uD53C\uD574\uB7C9 \uC99D\uAC00"
+    abilityStat: 9
+    rank: S
+    min: 16
+    max: 20
+    currency: AbilityStone
+  - title: "\uD53C\uD574\uB7C9 \uC99D\uAC00"
+    abilityStat: 9
+    rank: A
+    min: 11
+    max: 15
+    currency: AbilityStone
+  - title: "\uD53C\uD574\uB7C9 \uC99D\uAC00"
+    abilityStat: 9
+    rank: B
+    min: 6
+    max: 10
+    currency: AbilityStone
+  - title: "\uD53C\uD574\uB7C9 \uC99D\uAC00"
+    abilityStat: 9
+    rank: C
+    min: 1
+    max: 5
+    currency: AbilityStone
+  <abilityConsumptionInfo>k__BackingField:
+  - abilityLevel: 1
+    consumption: 50
+  - abilityLevel: 2
+    consumption: 70
+  - abilityLevel: 3
+    consumption: 90
+  - abilityLevel: 4
+    consumption: 110
+  <abilityPercentageInfo>k__BackingField:
+  - abilityRank: SS
+    abilityPercentage: 1
+  - abilityRank: S
+    abilityPercentage: 9
+  - abilityRank: A
+    abilityPercentage: 20
+  - abilityRank: B
+    abilityPercentage: 30
+  - abilityRank: C
+    abilityPercentage: 40
   rank: 
   randomAbility: 0
+  effects:
+    title: 
+    abilityStat: 0
+    rank: 
+    min: 0
+    max: 0
+    currency: 

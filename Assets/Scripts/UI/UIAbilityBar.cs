@@ -14,11 +14,10 @@ public class UIAbilityBar : UIBase
     [SerializeField] private Image costImage;
     
     [SerializeField] private TMP_Text titleText;
-    [SerializeField] private TMP_Text maxLevelText;
+    //[SerializeField] private TMP_Text maxLevelText;
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private TMP_Text costText;
     [SerializeField] private TMP_Text upgradePerLevelText;
-    [SerializeField] private TMP_Text totalUpgrade;
     
     private AbilityUpgradeInfo upgradeInfo;
 
@@ -109,13 +108,14 @@ public class UIAbilityBar : UIBase
     private void UpdateUI()
     {
         //levelText.text = upgradeInfo.level.ToString();
-        levelText.text = UpgradeManager.instance.rank;
+        levelText.text = upgradeInfo.rank;
+        titleText.text = upgradeInfo.title;
 
         if (upgradeInfo.upgradePerLevelInt != 0)
             //totalUpgrade.text = $"(+{upgradeInfo.upgradePerLevelInt * upgradeInfo.level})";
-            totalUpgrade.text = $"(+{UpgradeManager.instance.randomAbility})";
+            upgradePerLevelText.text = $"(+{upgradeInfo.randomAbilityIndex})";
         else
-            totalUpgrade.text = $"(+{UpgradeManager.instance.randomAbility})";
+            upgradePerLevelText.text = $"(+{upgradeInfo.randomAbilityIndex})";
 
         costText.text = upgradeInfo.cost.ChangeToShort();
         
@@ -128,15 +128,18 @@ public class UIAbilityBar : UIBase
             image.sprite = upgradeInfo.image;
 
         costImage.sprite = CurrencyManager.instance.GetIcon(upgradeInfo.currencyType);
+        
+        levelText.text = upgradeInfo.rank;
+        titleText.text = upgradeInfo.title;
        
         if (upgradeInfo.upgradePerLevelInt != 0)
-            upgradePerLevelText.text = upgradeInfo.upgradePerLevelInt.ToString();
+            upgradePerLevelText.text = $"(+{upgradeInfo.randomAbilityIndex})";
         else
-            upgradePerLevelText.text = (upgradeInfo.upgradePerLevelFloat * 100).ToString("F2") + "%";
+            upgradePerLevelText.text = $"(+{upgradeInfo.randomAbilityIndex}) + %";
 
         titleText.text = upgradeInfo.title + " <color=#16FF00>+</color>";
         // maxLevelText.text = upgradeInfo.maxLevel.ToString();
-        maxLevelText.text = upgradeInfo.statusType.ToString();
+        //maxLevelText.text = upgradeInfo.statusType.ToString();
         
         UpdateUI();
     }

@@ -30,7 +30,7 @@ public class DataManager
             ES3.Save<T>(id, data, saveSetting);
         else
         {
-            ES3Settings setting = new ES3Settings();
+            ES3Settings setting = new ES3Settings(); 
             saveSettings.Add(id, setting);
             ES3.Save<T>(id, data, setting);
         }

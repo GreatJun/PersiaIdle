@@ -65,6 +65,8 @@ MonoBehaviour:
     amount: 3
   - type: 9
     amount: 0
+  - type: 10
+    amount: 0
   currencyIcons:
   - {fileID: 21300000, guid: d23a5fc6b98cd4a49aa9a1b2ba3627cc, type: 3}
   - {fileID: 21300000, guid: 5adedd236bae049f7b9ad39ead4e8576, type: 3}
@@ -76,3 +78,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bdf38365757624bbe80b80fd7832055c, type: 3}
   - {fileID: 21300000, guid: bdf38365757624bbe80b80fd7832055c, type: 3}
   - {fileID: 21300000, guid: 42ea5b680413448bab9e4fd48a7abf0e, type: 3}
+  - {fileID: 21300000, guid: 9a70a97f307c64a4f81a61fb5a43d502, type: 3}

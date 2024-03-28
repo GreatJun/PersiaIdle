@@ -226,6 +226,7 @@ public enum ECurrencyType
     AwakenInvitation, // 각성 던전 입장권
     EnhanceInvitation,
     Exp,
+    AbilityStone, // 어빌리티 스톤
 }
 
 public enum EQuestRewardType
