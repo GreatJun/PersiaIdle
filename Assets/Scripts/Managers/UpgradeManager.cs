@@ -309,6 +309,7 @@ public class UpgradeManager : MonoBehaviour
         }
 
         /*================== 수정 필요 임시 i값 데이터로 변환 해야함 ==================*/
+        /*================== 수정 필요 임시 i값 데이터로 변환 해야함 ==================*/
         int i = 0;
         foreach (var upgradeInfo in abilityUpgradeInfo)
         {
@@ -316,6 +317,8 @@ public class UpgradeManager : MonoBehaviour
             upgradeInfo.Load();
             i++;
         }
+        /*================== 수정 필요 임시 i값 데이터로 변환 해야함 ==================*/
+        /*================== 수정 필요 임시 i값 데이터로 변환 해야함 ==================*/
     }
 
     public void SaveUpgradeInfo()
